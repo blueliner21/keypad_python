@@ -41,27 +41,38 @@ def enter_pressed():
 
 while True:
     C1.value(1)
-    if (R1.value() and count<7):
-        #print(count)
-        #disp.text("7",0+(10*count),32)
+    if (R1.value() and count<6):
+        print(count)
         code.append(7)
-        disp.text(code,0+(10*count),32)
+        disp.text("7",0+(10*count),32)
         disp.show()
-        
         time.sleep_ms(debounce_time)
         count = count+1
-    if R2.value():
+    if (R2.value() and count < 6):
         #print("4")
+        print(count)
         code.append(4)
+        disp.text("4",0+(10*count),32)
+        disp.show()
         time.sleep_ms(debounce_time)
-    if R3.value():
+        count = count+1
+    if (R3.value() and count < 6):
         #print("1")
+        print(count)
+        disp.text("1",0+(10*count),32)
+        disp.show()
         code.append(1)
         time.sleep_ms(debounce_time)
-    if R4.value():
+        count = count+1
+    if (R4.value() and count < 6):
         print("CLEAR")
+        print(count)
         code.clear()
+        disp.fill(0)
+        disp.show()
+        count = 0
         time.sleep_ms(debounce_time)
+    
     C1.value(0)
     C2.value(1)
     if R1.value():
@@ -99,4 +110,7 @@ while True:
         enter_pressed()
         time.sleep_ms(debounce_time)
     C3.value(0)
+    if count >=6:
+        print(count)
+        count = 0
 
