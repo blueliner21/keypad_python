@@ -23,14 +23,15 @@ C3 = machine.Pin(22, machine.Pin.OUT)
 OLED = machine.SPI(0, baudrate=400000, sck=SCK, mosi = MOSI)
 disp = SSD1306_SPI(width=128,height=64,spi=OLED,dc=DC,res=RES,cs=CS)
 
-disp.text("1",0,32)
-disp.text("2",10,32)
-disp.show()
+#disp.text("1",0,32)
+#disp.text("2",10,32)
+#disp.show()
 
 debounce_time = 200
 pinCode = [1,4,4,9,6,5]
 code = []
 code.clear()
+count = 0
 def enter_pressed():
     print(code)
     for i in code:
@@ -40,10 +41,15 @@ def enter_pressed():
 
 while True:
     C1.value(1)
-    if R1.value():
-        #print("7")
+    if (R1.value() and count<7):
+        #print(count)
+        #disp.text("7",0+(10*count),32)
         code.append(7)
+        disp.text(code,0+(10*count),32)
+        disp.show()
+        
         time.sleep_ms(debounce_time)
+        count = count+1
     if R2.value():
         #print("4")
         code.append(4)
@@ -93,3 +99,4 @@ while True:
         enter_pressed()
         time.sleep_ms(debounce_time)
     C3.value(0)
+
