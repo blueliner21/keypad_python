@@ -68,11 +68,32 @@ def enter_pressed(code):
     print(code)
     if (code == pinCode):
         print("Correct Code")
-        RGB[0] = Green
-        RGB.write()
+        display_write(1,1)
+        display_write(2,1)
+        display_write(3,1)
+        display_write(4,1)
+        display_write(5,1)
+        display_write(6,1)
+        display_write(7,1)
+        display_write(8,1)
+        time.sleep(1)
+        display_clear(8)
+        
+        ##RGB[0] = Green
+        ##RGB.write()
          
     else:
         print("WRONG")
-        RGB[0] = Red
-        RGB.write()
+        display_write(1,0)
+        display_write(2,0)
+        display_write(3,0)
+        display_write(4,0)
+        display_write(5,0)
+        display_write(6,0)
+        display_write(7,0)
+        display_write(8,0)
+        time.sleep(1)
+        display_clear(8)
+        ##RGB[0] = Red
+        ##RGB.write()
     
